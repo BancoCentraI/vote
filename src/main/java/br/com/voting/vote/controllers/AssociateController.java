@@ -2,7 +2,7 @@ package br.com.voting.vote.controllers;
 
 import br.com.voting.vote.dtos.AssociateDTO;
 import br.com.voting.vote.models.Associate;
-import br.com.voting.vote.services.AssociateService;
+import br.com.voting.vote.services.IAssociateService; // <- agora depende da interface
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 public class AssociateController {
 
     @Autowired
-    private AssociateService associateService;
+    private IAssociateService associateService; // <- usa a abstração, não a implementação
 
     @GetMapping
     public ResponseEntity<List<Associate>> getAll() {
@@ -45,6 +45,4 @@ public class AssociateController {
         associateService.updateAssociate(associateDTO, id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
